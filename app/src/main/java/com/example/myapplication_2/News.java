@@ -8,4 +8,12 @@ public class News {
         this.title = book_name;
         this.picture = book_picture;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

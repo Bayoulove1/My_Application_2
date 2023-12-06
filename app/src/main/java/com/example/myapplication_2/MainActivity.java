@@ -1,40 +1,140 @@
 package com.example.myapplication_2;
 //第二次实验 activity_main.xml 和 shop_item_list.xml
-//RecyclerView添加长按菜单
+//平行滑动
 
+//谷歌搜索接口
+
+//地图接口加载
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 import java.util.ArrayList;
 import java.util.List;
-
+//Tablayout+ViewPager2+Fragment
 public class MainActivity extends AppCompatActivity {
+    public class PageViewFragmentAdapter extends FragmentStateAdapter {
+        public PageViewFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+            super(fragmentManager, lifecycle);
+        }
+
+        @Override
+        public Fragment createFragment(int position) {
+            switch(position)
+            {
+                case 0:
+                    return BookItemFragment.newInstance();
+                case 2:
+                    return BrowserFragment.newInstance();
+            }
+            return BookItemFragment.newInstance();
+        }
+
+        @Override
+
+        public int getItemCount() {
+            return 3;
+        }
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        ViewPager2 viewPager2Main= findViewById(R.id.viewpager2_main);
+        viewPager2Main.setAdapter(new PageViewFragmentAdapter(getSupportFragmentManager(),getLifecycle()));
+        TabLayout tabLayout=findViewById(R.id.tablayout_header);
+        TabLayoutMediator tabLayoutMediator=new TabLayoutMediator(tabLayout, viewPager2Main, new TabLayoutMediator.TabConfigurationStrategy() {
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch(position)
+                {
+                    case 0:
+                        tab.setText("Book item");
+                        break;
+                    case 1:
+                        tab.setText("Browser");
+                        break;
+                    case 2:
+                        tab.setText("Map");
+                        break;
+                }
+            }
+
+    });
+        tabLayoutMediator.attach();
+}
+}
+/*public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
 
-    MyAdapter mMyAdapter;
+    public MyAdapter mMyAdapter;
+    private Button Add_submit;
     List<News> mNewsList = new ArrayList<>();
+    //private MainRecycleViewAdapter mainRecycleViewAdapter;
+
+    private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+            ,result -> {
+                if(null!=result){
+                    Intent intent=result.getData();
+                    if(result.getResultCode()==DetailsActivity.RESULT_CODE_SUCCESS)
+                    {
+                        Bundle bundle=intent.getExtras();
+                        String title= bundle.getString("title");
+                        int position = bundle.getInt("position");
+
+                        mNewsList.add(position, new News(title,R.drawable.ic_launcher_background) );
+                        mMyAdapter.notifyItemInserted(position);
+                    }
+                }
+            });
+    private ActivityResultLauncher<Intent> updateDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+            ,result -> {
+                if(null!=result){
+                    Intent intent=result.getData();
+                    if(result.getResultCode()==DetailsActivity.RESULT_CODE_SUCCESS)
+                    {
+                        Bundle bundle=intent.getExtras();
+                        String title= bundle.getString("title");
+
+                        int position=bundle.getInt("position");
+                        mNewsList.get(position).setTitle(title);
+                        mMyAdapter.notifyItemChanged(position);
+                    }
+                }
+            });
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Context mContext = this;
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.re_view);
         //String []titles = new String[]{"《软件项目管理案例教程》（第四版）","《创新工程实践》","《信息安全数学基础》（第二版）"};
@@ -42,42 +142,62 @@ public class MainActivity extends AppCompatActivity {
         mNewsList.add(new News("《创新工程实践》", R.drawable.book_2));
         mNewsList.add(new News("《信息安全数学基础》（第二版）", R.drawable.book_no_name));
         mMyAdapter = new MyAdapter();
-        mRecyclerView.setAdapter(mMyAdapter);
-        //1、注册长按菜单(onCreate)
+
         registerForContextMenu(mRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mMyAdapter);
     }
-    //2、显示上下文菜单项
-    public void onCreateContextMenu(ContextMenu menu, View v,
+    //ActivityResultLauncher<Intent> addDataLauncher;
 
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("具体操作：");
-        menu.add(0, 0, Menu.NONE, "添加");
-        menu.add(0, 1, Menu.NONE, "删除");
-        menu.add(0, 2, Menu.NONE, "修改");
-    }
-    //3、点击菜单，有响应效果
     public boolean onContextItemSelected(MenuItem item) {
         // 得到当前被选中的item信息
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
+       // AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        //Toast.makeText(this,"clicked"+item.getOrder(),Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case 0:
-                Toast.makeText(MainActivity.this, "您选中的是编辑操作", Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(this, DetailsActivity.class);
+                intent.putExtra("position",item.getOrder());
+                addDataLauncher.launch(intent);
+                Toast.makeText(MainActivity.this, "您选中的是添加操作", Toast.LENGTH_LONG).show();
                 break;
             case 1:
+                Toast.makeText(this,"item delete " +item.getOrder()+" clicked!",Toast.LENGTH_LONG)
+                        .show();
+                //添加询问是否删除的对话框
+                AlertDialog alertDialog;
+                alertDialog = new AlertDialog.Builder(this)
+                        .setTitle("Delete data")
+                        .setMessage("Are you want to delete this data?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mNewsList.remove(item.getOrder());
+                                new DataSaver().Save(MainActivity.this,mNewsList);
+                                mMyAdapter.notifyItemRemoved(item.getOrder());
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).create();
+                alertDialog.show();
                 Toast.makeText(MainActivity.this, "您选中的是删除操作", Toast.LENGTH_LONG).show();
                 break;
             case 2:
+                Intent intentUpdate=new Intent(this, DetailsActivity.class);
+                intentUpdate.putExtra("position",item.getOrder());
+                intentUpdate.putExtra("title",mNewsList.get(item.getOrder()).getTitle());
+                updateDataLauncher.launch(intentUpdate);
                 Toast.makeText(MainActivity.this, "您选中的是修改操作", Toast.LENGTH_LONG).show();
                 break;
 
             default:
                 return super.onContextItemSelected(item);
         }
-        return true;
+        return super.onContextItemSelected(item);
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyViewHoder> {
@@ -95,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
             News news = mNewsList.get(position);
             holder.mTitleTv.setText(news.title);
             holder.mImageTv.setImageResource(news.picture);
+
         }
 
         @Override
@@ -108,6 +229,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView mImageTv;
         TextView mTitleContent;
 
+        public TextView getTextView() {
+            return mTitleTv;
+        }
+            public ImageView getImageViewImage() {
+                return mImageTv;
+            }
         public MyViewHoder(View itemView) {
             super(itemView);
             mTitleTv = itemView.findViewById(R.id.textView1);
@@ -119,10 +246,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                contextMenu.add(0,0,getAdapterPosition(),"Add "+getAdapterPosition());
+                contextMenu.add(0,1,getAdapterPosition(),"Delete "+getAdapterPosition());
+                contextMenu.add(0,2,getAdapterPosition(),"Update "+getAdapterPosition());
+            }
 
         }
     }
-}
+
 
 
 //第一次实验代码：activity_main_1.xml
