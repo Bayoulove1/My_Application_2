@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataSaver {
-    public void Save(Context context, List<News> data)
+    public void Save(Context context, List<dataList> data)
     {
         try {
 

@@ -1,10 +1,5 @@
 package com.example.myapplication_2;
-//第二次实验 activity_main.xml 和 shop_item_list.xml
-//平行滑动
 
-//谷歌搜索接口
-
-//地图接口加载
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -38,7 +33,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
-//Tablayout+ViewPager2+Fragment
+//大作业
 public class MainActivity extends AppCompatActivity {
     public class PageViewFragmentAdapter extends FragmentStateAdapter {
         public PageViewFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
@@ -50,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
             switch(position)
             {
                 case 0:
-                    return BookItemFragment.newInstance();
+                    return Task.newInstance();
                 case 2:
                     return BrowserFragment.newInstance();
             }
-            return BookItemFragment.newInstance();
+            return Task.newInstance();
         }
 
         @Override
@@ -76,10 +71,64 @@ public class MainActivity extends AppCompatActivity {
                 switch(position)
                 {
                     case 0:
-                        tab.setText("Book item");
+                        tab.setText("开始任务");
                         break;
                     case 1:
-                        tab.setText("Browser");
+                        tab.setText("来点奖励");
+                        break;
+                    case 2:
+                        tab.setText("Map");
+                        break;
+                }
+            }
+
+        });
+        tabLayoutMediator.attach();
+    }
+}
+//Tablayout+ViewPager2+Fragment
+
+/*public class MainActivity extends AppCompatActivity {
+    public class PageViewFragmentAdapter extends FragmentStateAdapter {
+        public PageViewFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+            super(fragmentManager, lifecycle);
+        }
+
+        @Override
+        public Fragment createFragment(int position) {
+            switch(position)
+            {
+                case 0:
+                    return Task.newInstance();
+                case 2:
+                    return BrowserFragment.newInstance();
+            }
+            return Task.newInstance();
+        }
+
+        @Override
+
+        public int getItemCount() {
+            return 3;
+        }
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        ViewPager2 viewPager2Main= findViewById(R.id.viewpager2_main);
+        viewPager2Main.setAdapter(new PageViewFragmentAdapter(getSupportFragmentManager(),getLifecycle()));
+        TabLayout tabLayout=findViewById(R.id.tablayout_header);
+        TabLayoutMediator tabLayoutMediator=new TabLayoutMediator(tabLayout, viewPager2Main, new TabLayoutMediator.TabConfigurationStrategy() {
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch(position)
+                {
+                    case 0:
+                        tab.setText("开始任务");
+                        break;
+                    case 1:
+                        tab.setText("来点奖励");
                         break;
                     case 2:
                         tab.setText("Map");
@@ -90,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     });
         tabLayoutMediator.attach();
 }
-}
+}*/
 /*public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
 
