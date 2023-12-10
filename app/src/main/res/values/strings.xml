@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">My Application_2</string>
+    <string name="app_name">MyFirstApplication</string>
+    <string name="hello">Hello</string>
+    <string name="jnu">JNU</string>
+    <string name="change_text">Change Text</string>
+    <string name="enter_new_data">Enter new data</string>
+    <string name="save">Save</string>
+    <string name="add">增加</string>
+    <string name="edit">修改</string>
+    <string name="delete">删除</string>
+    <string name="_123">123</string>
+
+
 </resources>
