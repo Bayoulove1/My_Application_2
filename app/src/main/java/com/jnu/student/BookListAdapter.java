@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
     private List<Book> books;
-    private static final int DEFAULT_COVER_RESOURCE_ID = R.drawable.book_no_name; // 默认封面图片的资源ID
+    //private static final int DEFAULT_COVER_RESOURCE_ID = R.drawable.book_no_name; // 默认封面图片的资源ID
 
     public BookListAdapter(List<Book> books) {
         this.books = books;
@@ -30,8 +30,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
         holder.bookTitle.setText(book.getTitle());
-        holder.price.setText("12");
-        //holder.bookCover.setImageResource(book.getCoverResourceId());
+        holder.price.setText(Integer.toString(book.getPrice()));
         holder.itemView.setOnLongClickListener(v -> {
             // 处理长按事件，显示上下文菜单或其他操作
             v.showContextMenu();
@@ -45,8 +44,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         return books.size();
     }
 
-    public void addData(String newData) {
-        books.add(new Book(newData, DEFAULT_COVER_RESOURCE_ID)); // 使用默认封面图片
+    public void addData(String newData,int newPrice) {
+        books.add(new Book(newData, newPrice));
         notifyItemInserted(books.size() - 1);
     }
 
@@ -64,6 +63,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     public void updateBook(Book book,int position){
         Book bookAtPosition = getBookAtPosition(position);
         bookAtPosition.setTitle(book.getTitle());
+        bookAtPosition.setPrice(book.getPrice());
         notifyItemChanged(position);
     }
     static class BookViewHolder extends RecyclerView.ViewHolder {

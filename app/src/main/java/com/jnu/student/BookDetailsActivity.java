@@ -21,17 +21,20 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_data);
 
         newDataEditText = findViewById(R.id.edit_text_new_data);
+        newPriceEditText = findViewById(R.id.editTextNumber2);
         book = (Book) getIntent().getSerializableExtra("bookToEdit");
         position = getIntent().getIntExtra("position", 0);
         newDataEditText.setText(book.getTitle());
+        newPriceEditText.setText(book.getPrice());
     }
 
     public void onSaveButtonClick(View view) {
         String newData = newDataEditText.getText().toString();
-
+        int newPrice = Integer.parseInt(newDataEditText.getText().toString());
         if (!newData.isEmpty()) {
             Intent resultIntent = new Intent();
             book.setTitle(newData);
+            book.setPrice(newPrice);
             resultIntent.putExtra("book", book);
             resultIntent.putExtra("position", position);
             setResult(RESULT_OK, resultIntent);

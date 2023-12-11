@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,7 +45,8 @@ public class BookFragment extends Fragment {
             Intent data = result.getData();
             if (data != null) {
                 String newData = data.getStringExtra("newData");
-                adapter.addData(newData);
+                int newPrice = data.getIntExtra("newPrice",000);
+                adapter.addData(newData,newPrice);
                 saveListBooks();
             }
 
@@ -69,9 +71,8 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main,container,false);
-        //List<Book> bookList = getListBooks();
-        List<Book> bookList = new ArrayList<>();
-        bookList.add(new Book("hello",12));
+        List<Book> bookList = getListBooks();
+
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_books);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new BookListAdapter(bookList);
@@ -86,14 +87,14 @@ public class BookFragment extends Fragment {
 
     private List<Book> getListBooks() {
         try {
-            File file = new File(requireActivity().getFilesDir(), "Serializable.txt");
+            File file = new File(requireActivity().getFilesDir(), "\"C:\\Users\\bayoulove1\\Desktop\\out.txt\"");
             if (!file.exists()) {
                 file.createNewFile();
-                books.add(new Book("开始一项计划吧！",1314));
+                books.add(new Book("长按开始一项计划吧！",1314));
                 saveListBooks();
-                return books;
+                return  books;
             }
-            ObjectInputStream inputStream = new ObjectInputStream(requireActivity().openFileInput("Serializable.txt"));
+            ObjectInputStream inputStream = new ObjectInputStream(requireActivity().openFileInput("\"C:\\Users\\bayoulove1\\Desktop\\out.txt\""));
             Object object = inputStream.readObject();
             if (object != null) {
                 books.addAll((Collection<? extends Book>) object);
@@ -106,7 +107,7 @@ public class BookFragment extends Fragment {
 
     public void saveListBooks() {
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(requireActivity().openFileOutput("Serializable.txt", MODE_PRIVATE));
+            ObjectOutputStream outputStream = new ObjectOutputStream(requireActivity().openFileOutput("\"C:\\Users\\bayoulove1\\Desktop\\out.txt\"", MODE_PRIVATE));
             outputStream.writeObject(books);
         } catch (IOException e) {
             e.printStackTrace();
