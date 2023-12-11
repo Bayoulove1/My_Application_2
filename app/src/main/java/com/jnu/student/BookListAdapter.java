@@ -1,10 +1,8 @@
 package com.jnu.student;
 
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,7 +72,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         BookViewHolder(@NonNull View itemView) {
             super(itemView);
             bookCover = itemView.findViewById(R.id.image_view_book_cover);
-            bookTitle = itemView.findViewById(R.id.text_view_book_title);
+            bookTitle = itemView.findViewById(R.id.text_view_Task_title);
         }
 
 

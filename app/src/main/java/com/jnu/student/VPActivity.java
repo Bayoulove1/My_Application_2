@@ -28,7 +28,7 @@ public class VPActivity extends AppCompatActivity {
         fragmentList.add(new BookFragment());
         fragmentList.add(new WebViewFragment());
         fragmentList.add(new WebViewFragment());
-        String[] titles = new String[]{"图书","新闻","地图"};
+        String[] titles = new String[]{"任务","奖励","搜索"};
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             tab.setText(titles[position]);
         });

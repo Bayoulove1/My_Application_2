@@ -23,6 +23,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextFields,VisualLintTextFieldSize" />
 
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:hint="Enter new Reward"
+        android:ems="10"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/button_save"
         android:layout_width="wrap_content"
