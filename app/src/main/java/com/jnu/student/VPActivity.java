@@ -26,7 +26,7 @@ public class VPActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         fragmentList.add(new BookFragment());
-        fragmentList.add(new WebViewFragment());
+        fragmentList.add(new BookFragment());
         fragmentList.add(new WebViewFragment());
         String[] titles = new String[]{"任务","奖励","搜索"};
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {

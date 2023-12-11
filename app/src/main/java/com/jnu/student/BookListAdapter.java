@@ -30,7 +30,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
         holder.bookTitle.setText(book.getTitle());
-        holder.bookCover.setImageResource(book.getCoverResourceId());
+        holder.price.setText("12");
+        //holder.bookCover.setImageResource(book.getCoverResourceId());
         holder.itemView.setOnLongClickListener(v -> {
             // 处理长按事件，显示上下文菜单或其他操作
             v.showContextMenu();
@@ -66,13 +67,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         notifyItemChanged(position);
     }
     static class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView bookCover;
         TextView bookTitle;
-
+        TextView price;
         BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            bookCover = itemView.findViewById(R.id.image_view_book_cover);
-            bookTitle = itemView.findViewById(R.id.text_view_Task_title);
+            bookTitle = itemView.findViewById(R.id.text_view_tasks_title);
+            price = itemView.findViewById(R.id.text_view_price);
         }
 
 

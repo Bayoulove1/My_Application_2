@@ -69,8 +69,9 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main,container,false);
-        List<Book> bookList = getListBooks();
-
+        //List<Book> bookList = getListBooks();
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(new Book("hello",12));
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_books);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new BookListAdapter(bookList);
@@ -88,11 +89,9 @@ public class BookFragment extends Fragment {
             File file = new File(requireActivity().getFilesDir(), "Serializable.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                //books.add(new Book("软件项目管理案例教程（第4版）", R.drawable.book_2));
-                books.add(new Book("创新工程实践", R.drawable.book_no_name));
-                //books.add(new Book("信息安全数学基础（第2版）", R.drawable.book_1));
+                books.add(new Book("开始一项计划吧！",1314));
                 saveListBooks();
-                return  books;
+                return books;
             }
             ObjectInputStream inputStream = new ObjectInputStream(requireActivity().openFileInput("Serializable.txt"));
             Object object = inputStream.readObject();

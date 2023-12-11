@@ -3,28 +3,27 @@ package com.jnu.student;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    private int coverResourceId;
+    private int price;
     private String title;
-
-    public Book(String title, int coverResourceId) {
+    public Book(String title, int price) {
         this.title = title;
-        this.coverResourceId = coverResourceId;
-    }
-
-    public int getCoverResourceId() {
-        return coverResourceId;
+        this.price = price;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setCoverResourceId(int coverResourceId) {
-        this.coverResourceId = coverResourceId;
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+    public int getPrice() {
+        return price;
+    }
+
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
 

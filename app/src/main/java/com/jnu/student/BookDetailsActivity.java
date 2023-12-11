@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BookDetailsActivity extends AppCompatActivity {
     private EditText newDataEditText;
+    private EditText newPriceEditText;
     private Book book;
     private int position;
 
@@ -31,7 +32,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         if (!newData.isEmpty()) {
             Intent resultIntent = new Intent();
             book.setTitle(newData);
-            book.setCoverResourceId(R.drawable.book_no_name);
             resultIntent.putExtra("book", book);
             resultIntent.putExtra("position", position);
             setResult(RESULT_OK, resultIntent);
