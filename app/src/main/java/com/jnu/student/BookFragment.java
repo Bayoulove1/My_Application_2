@@ -3,6 +3,7 @@ package com.jnu.student;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -19,6 +20,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -151,8 +153,24 @@ public class BookFragment extends Fragment {
             editDataAtPosition(position);
             return true;
         } else if (menuItemId == R.id.menu_delete) {
-            books.remove(position);
-            adapter.notifyItemRemoved(position);
+            AlertDialog alertDialog;
+            alertDialog = new AlertDialog.Builder(this.getContext())
+                    .setMessage("确定要删除这项任务吗？")
+                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            books.remove(item.getOrder());
+                            saveListBooks();
+                            adapter.notifyItemRemoved(item.getOrder());
+                        }
+                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    }).create();
+            alertDialog.show();
+//            books.remove(position);
+//            adapter.notifyItemRemoved(position);
             return true;
         } else {
             return super.onContextItemSelected(item);
