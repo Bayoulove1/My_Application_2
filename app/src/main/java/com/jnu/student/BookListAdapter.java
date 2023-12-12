@@ -3,6 +3,8 @@ package com.jnu.student;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,8 +75,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             super(itemView);
             bookTitle = itemView.findViewById(R.id.text_view_tasks_title);
             price = itemView.findViewById(R.id.text_view_price);
+            CheckBox checkBox = itemView.findViewById(R.id.checkBox);
+//            checkBox.setOnCheckedChangeListener(new View.OnClickListener(){
+//                if(isChecked){
+//
+//                }
+//            });
         }
-
-
     }
 }

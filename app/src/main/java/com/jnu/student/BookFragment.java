@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -13,6 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -37,7 +42,7 @@ import java.util.List;
 
 
 public class BookFragment extends Fragment {
-
+    private static int score;
     private static final int EDIT_DATA_REQUEST_CODE = 2;
     private BookListAdapter adapter;
     private static final int ADD_DATA_REQUEST_CODE = 1;
@@ -74,12 +79,35 @@ public class BookFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main,container,false);
         List<Book> bookList = getListBooks();
-
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_books);
+        TextView textView = view.findViewById(R.id.textView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new BookListAdapter(bookList);
         recyclerView.setAdapter(adapter);
-
+        getParentFragmentManager().setFragmentResultListener("upDateScore",this,(requestKey, result) -> {
+            score = new Score().loadScore(this.getContext());
+            int updateScore = 0;
+            updateScore = updateScore + score;
+            textView.setText(String.valueOf(updateScore));
+            new Score().saveScore(this.getContext(),updateScore);
+            if (getActivity() != null) {
+                int all_score = new Score().loadScore(this.getContext());
+                Bundle bundle = new Bundle();
+                bundle.putInt("allScore", all_score);
+                getParentFragmentManager().setFragmentResult("AllScore", bundle);
+            }
+        });
+        Button buttonZero = view.findViewById(R.id.button_zero);
+        // 设置按钮点击事件监听器
+        buttonZero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 在此处执行按钮点击后的操作
+                Toast.makeText(getContext(), "All Score 归零", Toast.LENGTH_SHORT).show();
+                textView.setText(String.valueOf(0));
+                new Score().saveScore(getContext(),0);
+            }
+        });
         // 关联上下文菜单
         registerForContextMenu(recyclerView);
         recyclerView.setOnCreateContextMenuListener(this); // 设置上下文菜单的创建监听器

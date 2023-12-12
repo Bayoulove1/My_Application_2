@@ -1,6 +1,11 @@
 package com.jnu.student;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +21,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.widget.CompoundButton.OnCheckedChangeListener;
+
 public class VPActivity extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
+    private static int score;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,13 +33,16 @@ public class VPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vp);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
+
         fragmentList.add(new BookFragment());
         fragmentList.add(new BookFragment());
         fragmentList.add(new WebViewFragment());
+
         String[] titles = new String[]{"任务","奖励","搜索"};
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             tab.setText(titles[position]);
         });
+
         viewPager.setAdapter(new FragmentStateAdapter(getSupportFragmentManager(), getLifecycle()) {
 
             @NonNull
