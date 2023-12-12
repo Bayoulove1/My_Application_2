@@ -15,13 +15,14 @@
 
         <com.jnu.student.MenuRecyclerView
             android:id="@+id/recycler_view_books"
-            android:layout_width="806dp"
-            android:layout_height="378dp"
+            android:layout_width="399dp"
+            android:layout_height="405dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
 
         </com.jnu.student.MenuRecyclerView>
@@ -39,7 +40,7 @@
                 android:layout_width="180dp"
                 android:layout_height="69dp"
                 android:gravity="center"
-                android:text="0"
+                android:text="90"
                 android:textColor="#F44336"
                 android:textSize="30dp"
                 android:textStyle="bold" />

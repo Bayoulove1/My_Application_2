@@ -84,26 +84,16 @@ public class BookFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new BookListAdapter(bookList);
         recyclerView.setAdapter(adapter);
-        getParentFragmentManager().setFragmentResultListener("upDateScore",this,(requestKey, result) -> {
-            score = new Score().loadScore(this.getContext());
-            int updateScore = 0;
-            updateScore = updateScore + score;
-            textView.setText(String.valueOf(updateScore));
-            new Score().saveScore(this.getContext(),updateScore);
-            if (getActivity() != null) {
-                int all_score = new Score().loadScore(this.getContext());
-                Bundle bundle = new Bundle();
-                bundle.putInt("allScore", all_score);
-                getParentFragmentManager().setFragmentResult("AllScore", bundle);
-            }
-        });
+        //在这里更新Score的数据
+
+        //归零操作已经完成
         Button buttonZero = view.findViewById(R.id.button_zero);
         // 设置按钮点击事件监听器
         buttonZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 在此处执行按钮点击后的操作
-                Toast.makeText(getContext(), "All Score 归零", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "归零", Toast.LENGTH_SHORT).show();
                 textView.setText(String.valueOf(0));
                 new Score().saveScore(getContext(),0);
             }

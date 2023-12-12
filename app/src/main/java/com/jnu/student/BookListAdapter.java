@@ -1,12 +1,15 @@
 package com.jnu.student;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,19 +18,31 @@ import java.util.List;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
     private List<Book> books;
+    private AdapterView.OnItemClickListener listener;
     //private static final int DEFAULT_COVER_RESOURCE_ID = R.drawable.book_no_name; // 默认封面图片的资源ID
-
+    public static int score = 0;
     public BookListAdapter(List<Book> books) {
         this.books = books;
     }
-
+    public void setListener(AdapterView.OnItemClickListener listener){
+        this.listener = listener;
+    }
+    public interface ItemClickListener{
+        void onItemClick(int data);
+    }
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
         return new BookViewHolder(view);
     }
-
+    public static BookFragment newInstance(int Score){
+        Bundle bundle = new Bundle();
+        bundle.putInt("Score",score);
+        BookFragment fragment = new BookFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
@@ -38,6 +53,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             v.showContextMenu();
             return true;
         });
+//        holder.itemView.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                //listener.onItemClick(17);
+//            }
+//        });
 
     }
 
@@ -71,16 +93,44 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     static class BookViewHolder extends RecyclerView.ViewHolder {
         TextView bookTitle;
         TextView price;
+        private TextView textViewScore;
+
         BookViewHolder(@NonNull View itemView) {
             super(itemView);
             bookTitle = itemView.findViewById(R.id.text_view_tasks_title);
             price = itemView.findViewById(R.id.text_view_price);
             CheckBox checkBox = itemView.findViewById(R.id.checkBox);
-//            checkBox.setOnCheckedChangeListener(new View.OnClickListener(){
-//                if(isChecked){
-//
-//                }
-//            });
+//            //itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
+            checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    score = 12;
+
+                //public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    // 在这里处理 CheckBox 被点击时的逻辑
+
+                      // TextView scoreTextView = getTextViewScore();
+
+                        //Integer.parseInt(scoreTextView.getText().toString());
+//                       //checkBox被选中
+                            checkBox.setChecked(false);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putInt("score", score);
+
+                        // 可以执行其他操作，例如修改数据等
+                    }
+
+            }
+            );
         }
+//               // public TextView getTextViewTitle() {
+//                    return textViewTitle;
+//                }
+
+                public TextView getTextViewScore() {
+                   return price;
+               }
     }
 }
+
+
