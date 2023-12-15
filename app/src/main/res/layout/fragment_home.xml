@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainFragments.HomeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- 用户名和头像 -->
+    <LinearLayout
+        android:id="@+id/userInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="onUserInfoClick"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="114dp"
+            android:layout_height="126dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/me" />
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="94dp"
+            android:layout_height="56dp"
+            android:text="我"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/logoutTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userInfoLayout"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:text="退出登录"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/helpTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoutTextView"
+        android:layout_marginTop="31dp"
+        android:clickable="true"
+        android:onClick="onHelpClick"
+        android:padding="16dp"
+        android:text="帮助"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/checkUpdateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/helpTextView"
+        android:layout_marginTop="42dp"
+        android:padding="16dp"
+        android:text="检查更新"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

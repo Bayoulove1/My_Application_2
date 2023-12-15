@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Task_Reward_Details.ShortTaskFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="549dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="106dp"
+            android:layout_height="59dp"
+            android:text="添加任务"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.882"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.849" />
+
+        <Button
+            android:id="@+id/button_done"
+            android:layout_width="107dp"
+            android:layout_height="64dp"
+            android:text="完成任务"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.878"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.976" />
+
+        <TextView
+            android:id="@+id/textViewScore"
+            android:layout_width="195dp"
+            android:layout_height="91dp"
+            android:layout_marginTop="628dp"
+            android:text="0"
+            android:textSize="40dp"
+            android:textColor="#1B5585"
+            app:layout_constraintEnd_toStartOf="@+id/button_add"
+            app:layout_constraintHorizontal_bias="0.216"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textview_now_Score"
+            android:layout_width="190dp"
+            android:layout_height="68dp"
+            android:text="现有分数"
+            android:textSize="30dp"
+            android:textColor="#1B5585"
+            app:layout_constraintBottom_toTopOf="@+id/textViewScore"
+            app:layout_constraintEnd_toEndOf="@+id/textViewScore"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textViewScore" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_task"
+        android:title="@string/task"
+        android:icon="@mipmap/task"
+        />
+    <item
+        android:id="@+id/menu_reward"
+        android:title="@string/reward"
+        android:icon="@mipmap/reward" />
+    <item
+        android:id="@+id/menu_wallet"
+        android:title="钱包"
+        android:icon="@mipmap/wallet" />
+    <item
+        android:id="@+id/menu_home"
+        android:title="主页"
+        android:icon="@mipmap/home" />
+</menu>

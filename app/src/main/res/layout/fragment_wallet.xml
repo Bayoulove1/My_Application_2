@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragments.WalletFragment">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="wallet" />
+        android:id="@+id/text_wallet_title"
+        android:layout_width="282dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="8dp"
+        android:text="现有分数："
+        android:textColor="#6495ED"
+        android:textSize="40dp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/text_wallet_data"
+        android:layout_width="284dp"
+        android:layout_height="144dp"
+        android:textColor="#6495ED"
+        android:textSize="50dp"
+        android:text="0"
+        />
+
+</LinearLayout>
