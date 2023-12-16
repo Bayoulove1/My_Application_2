@@ -23,7 +23,7 @@
             android:id="@+id/button_add"
             android:layout_width="106dp"
             android:layout_height="59dp"
-            android:text="添加任务"
+            android:text="添加奖励"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.882"
@@ -35,7 +35,7 @@
             android:id="@+id/button_done"
             android:layout_width="107dp"
             android:layout_height="64dp"
-            android:text="删除任务"
+            android:text="完成奖励"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.878"
@@ -47,10 +47,10 @@
             android:id="@+id/textViewScore"
             android:layout_width="195dp"
             android:layout_height="91dp"
-            android:layout_marginTop="628dp"
+            android:layout_marginTop="724dp"
             android:text="0"
-            android:textSize="40dp"
             android:textColor="#1B5585"
+            android:textSize="40dp"
             app:layout_constraintEnd_toStartOf="@+id/button_add"
             app:layout_constraintHorizontal_bias="0.216"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,15 +58,18 @@
 
         <TextView
             android:id="@+id/textview_now_Score"
-            android:layout_width="190dp"
-            android:layout_height="68dp"
+            android:layout_width="206dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="620dp"
+            android:layout_marginEnd="44dp"
             android:text="现有分数"
-            android:textSize="30dp"
             android:textColor="#1B5585"
-            app:layout_constraintBottom_toTopOf="@+id/textViewScore"
-            app:layout_constraintEnd_toEndOf="@+id/textViewScore"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textViewScore" />
+            android:textSize="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_add"
+            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

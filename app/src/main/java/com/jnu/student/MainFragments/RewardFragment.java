@@ -17,6 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.jnu.student.R;
 import com.jnu.student.Task_Reward_Details.ShortTaskFragment;
+import com.jnu.student.Task_Reward_Details.TotalRewardFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,6 @@ public class RewardFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
     public static RewardFragment newInstance() {
         RewardFragment fragment = new RewardFragment();
         Bundle args = new Bundle();
@@ -85,7 +84,7 @@ public class RewardFragment extends Fragment {
         public Fragment createFragment(int position) {
             String title = mTitle.get(position);
             if (title.equals("奖励一下")) {
-                return ShortTaskFragment.newInstance();
+                return TotalRewardFragment.newInstance();
             }
             else {
                 return null;
