@@ -18,9 +18,6 @@ import com.jnu.student.R;
 public class LongTaskFragment extends Fragment {
 
 
-    private String mParam1;
-    private String mParam2;
-
     public LongTaskFragment() {
         // Required empty public constructor
     }

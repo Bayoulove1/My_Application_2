@@ -13,12 +13,8 @@
         android:theme="@style/Theme.MyFirstApplication"
         tools:targetApi="31">
         <activity
-            android:name=".DataKeep.BookItemDetailsActivity"
+            android:name=".DataKeep.STaskDetailsActivity"
             android:exported="false" />
-        <meta-data
-            android:name="TencentMapSDK"
-            android:value="7YABZ-5PCRJ-PNWF7-XRQBL-D5QHJ-5LFKB"/>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
