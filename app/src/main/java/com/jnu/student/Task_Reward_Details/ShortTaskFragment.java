@@ -114,7 +114,6 @@ public class ShortTaskFragment extends Fragment implements OnDataChangeListener{
                         if (data != null) {
                             String name = data.getStringExtra("name");
                             String scoreText = data.getStringExtra("score");
-
                             assert scoreText != null;
                             double score = Double.parseDouble(scoreText);
                             tasks.add(new ShortTask(name, score));
