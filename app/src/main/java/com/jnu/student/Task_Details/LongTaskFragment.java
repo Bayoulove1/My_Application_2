@@ -1,4 +1,4 @@
-package com.jnu.student.Task_Reward_Details;
+package com.jnu.student.Task_Details;
 
 import android.os.Bundle;
 

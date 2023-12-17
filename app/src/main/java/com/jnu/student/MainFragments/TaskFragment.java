@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.jnu.student.R;
-import com.jnu.student.Task_Reward_Details.LongTaskFragment;
-import com.jnu.student.Task_Reward_Details.ShortTaskFragment;
+import com.jnu.student.Task_Details.LongTaskFragment;
+import com.jnu.student.Task_Details.ShortTaskFragment;
 
 import java.util.ArrayList;
 import java.util.List;

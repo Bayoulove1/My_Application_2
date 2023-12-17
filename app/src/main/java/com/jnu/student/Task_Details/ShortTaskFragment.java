@@ -1,4 +1,4 @@
-package com.jnu.student.Task_Reward_Details;
+package com.jnu.student.Task_Details;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -22,17 +22,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jnu.student.DataKeep.GainScoreDataBank;
 import com.jnu.student.DataKeep.SDataBank;
 import com.jnu.student.DataKeep.STaskDetailsActivity;
 import com.jnu.student.DataKeep.ShortTask;
-import com.jnu.student.MainFragments.TaskFragment;
 import com.jnu.student.R;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 public class ShortTaskFragment extends Fragment implements OnDataChangeListener{

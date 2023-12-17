@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -24,17 +23,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
 import com.jnu.student.DataKeep.GainScoreDataBank;
 import com.jnu.student.DataKeep.Reward;
 import com.jnu.student.DataKeep.RewardDataBank;
 import com.jnu.student.DataKeep.STaskDetailsActivity;
 import com.jnu.student.R;
-import com.jnu.student.Task_Reward_Details.OnDataChangeListener;
+import com.jnu.student.Task_Details.OnDataChangeListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class RewardFragment extends Fragment implements OnDataChangeListener {
     private ArrayList<Reward> rewards = new ArrayList<>();
