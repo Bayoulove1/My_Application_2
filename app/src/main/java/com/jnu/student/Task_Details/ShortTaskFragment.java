@@ -156,6 +156,7 @@ public class ShortTaskFragment extends Fragment implements OnDataChangeListener{
                             if (shortTask.isSelected()) {
                                 double score = shortTask.getScore();
                                 TotalScore += score;
+                                gainScore = new GainScoreDataBank().WalletLoad(requireContext());
                                 gainScore += score;
                                 iterator.remove(); // 在使用Iterator遍历时移除元素
                                 dataChanged = true;

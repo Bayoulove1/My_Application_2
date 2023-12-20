@@ -163,6 +163,7 @@ public class RewardFragment extends Fragment implements OnDataChangeListener {
                             if (r.Select()) {
                                 double score = r.getScore(); // 加载当前的分数
                                 TotalScore -= score; // 加到总分上去
+                                GainScore = new GainScoreDataBank().WalletLoad(requireContext());
                                 GainScore -= score;
                                 iterator.remove(); // 使用迭代器安全删除
                                 daChanged = true;
