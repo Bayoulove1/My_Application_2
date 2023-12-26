@@ -23,4 +23,12 @@
         android:text="0"
         />
 
+    <Button
+        android:id="@+id/button_zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="归零"
+        android:textSize="40dp"
+        android:textColor="#93B5CF"/>
+
 </LinearLayout>

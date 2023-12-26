@@ -1,5 +1,6 @@
 package com.jnu.student.MainFragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jnu.student.DataKeep.GainScoreDataBank;
@@ -16,6 +18,9 @@ import com.jnu.student.R;
 public class WalletFragment extends Fragment {
     private double TotalScore;
     private TextView textViewScore;
+    Button zero;
+    double ToZero;
+    private GainScoreDataBank gainScoreDataBank = new GainScoreDataBank();//获得分数的保存
     private Handler handler = new Handler();
 
     public WalletFragment() {
@@ -43,8 +48,20 @@ public class WalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
         textViewScore = rootView.findViewById(R.id.text_wallet_data);//没问题这里，因为要获得的是分数显示的数字
+        //简简单单实现归零操作，有时候是需要归零的
+        zero = rootView.findViewById(R.id.button_zero);
+        zero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TotalScore = 0.0;
+                gainScoreDataBank = new GainScoreDataBank();
+                gainScoreDataBank.WalletSave(requireActivity(), TotalScore);
+                textViewScore.setText(String.valueOf(TotalScore));
+            }
+        });
         return rootView;
     }
+
     public void onResume(){
         super.onResume();
         startTextViewUpdate();
